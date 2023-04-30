@@ -1,3 +1,12 @@
+h1, h2{
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+li{
+    margin-top: 20px;
+}
 
 a{
     color: black;
@@ -36,6 +45,12 @@ a{
 
 }
 
+.colors_task{
+    margin: auto;
+    margin-top: 20px;
+
+}
+
 .timer{
     display: flex;
     flex-wrap: wrap;
@@ -43,11 +58,7 @@ a{
     font-size: 20px;
 }
 
-h1, h2{
-    text-align: center;
-    margin-top: 20px;
+.points{
+    margin-right: 5%;
 }
 
-li{
-    margin-top: 20px;
-}

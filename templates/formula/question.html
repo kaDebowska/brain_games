@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block body %}
     <h1>Formula</h1>
+    <div class="d-flex flex-row-reverse points">
+        <div class="p-2">Wynik: {{ formula.player.formula_points }}</div>
+    </div>
     <div class="timer">
         <p>czas:</p>
         <span id="timer"></span>

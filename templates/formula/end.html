@@ -2,5 +2,7 @@
 {% block body %}
     <h1>Twój wynik:</h1>
     <h2>{{ formula.player.formula_points }}</h2>
-
+        <div class="container">
+            <a class="btn btn-primary" href="{{ url_for("formula_start") }}" role="button">Zagraj ponownie</a>
+    </div>
 {% endblock %}
