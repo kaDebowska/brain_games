@@ -1,14 +1,9 @@
 {% extends "base.html" %}
 {% block body %}
-    <style>
-        .colors_question{
-            color: {{ colors.task[1] }}
-        }
-    </style>
     <h1>Color Craze</h1>
-{#    <div class="d-flex flex-row-reverse points">#}
-{#        <div class="p-2">Wynik: {{ colors.player.colors_points }}</div>#}
-{#    </div>#}
+    <div class="d-flex flex-row-reverse points">
+        <div class="p-2">Wynik: {{ colors.player.colors_points }}</div>
+    </div>
 {#    <div class="timer">#}
 {#        <p>czas:</p>#}
 {#        <span id="timer"></span>#}
@@ -16,17 +11,17 @@
     <div class="card text-bg-light mb-3 colors_task" style="max-width: 18rem;">
       <div class="card-header">{{ colors.task_type }}</div>
       <div class="card-body">
-      <h5 class="card-title colors_question">{{ colors.task[0] }}</h5>
+      <h5 class="card-title colors_question" style="color: {{ colors.task[1] }}">{{ colors.task[0] }}</h5>
       </div>
     </div>
 
-{#    <div class="answer_buttons">#}
-{#        {% for i in range(4) %}#}
-{#            <div>#}
-{#                <a class="btn btn-primary formula_btn" href="{{ url_for("formula_answer", index=i) }}" role="button">{{ formula.all_answers[i] }}</a>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
+    <div class="answer_buttons">
+        {% for key in colors.answers %}
+            <div>
+                <a class="btn btn-light colors_btn" href="{{ url_for("colors_answer", key=key) }}" role="button" style="color:{{ colors.answers[key] }}">{{ key }}</a>
+            </div>
+        {% endfor %}
+    </div>
 {#    <script>#}
 {#        let timer = document.getElementById('timer');#}
 {#        let time = timer.innerHTML || {{ time_left }};#}

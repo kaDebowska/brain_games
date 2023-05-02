@@ -45,9 +45,17 @@ a{
 
 }
 
+.colors_btn{
+    height: 70px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .colors_task{
     margin: auto;
-    margin-top: 20px;
+    margin-top: 40px;
 
 }
 

@@ -43,6 +43,35 @@ def colors_question():
 
     return render_template('colorCraze/question.html', colors=colors, time_left=time_left)
 
+@app.route('/colors/answer/<key>')
+def colors_answer(key):
+    time_left = session.get('time_left')
+    # if key not in colors.answers.keys():
+    #     return render_template('colorCraze/question.html', colors=colors, time_left=time_left)
+    answer = [key, colors.answers[key]]
+    colors.player.give_colors_answer(answer)
+    print('colors.player.colors_answer', colors.player.colors_answer)
+    if len(colors.player.colors_answer) == 2:
+        print('tu powinno przejść do check')
+        return redirect('/colors/check_answer', code=302)
+    return redirect('/colors/question', code=302)
+
+
+@app.route('/colors/check_answer')
+def colors_check_answer():
+    print('colors.player.colors_answer', colors.player.colors_answer)
+    print('colors.correct_answer', colors.correct_answer)
+    if sorted(colors.player.colors_answer) == sorted(colors.correct_answer):
+        colors.player.colors_points += 1
+        return redirect('/colors/question', code=302)
+    print("bad answer")
+    # session['last_page'] = 'check_answer'
+    # return render_template('formula/wrong_answer.html', formula=formula)
+
+# @app.route('/formula/end')
+# def formula_end():
+#     return render_template('formula/end.html', formula=formula)
+
 # FORMULA #############################################################################################
 global formula
 formula = Formula()
