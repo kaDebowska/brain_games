@@ -59,6 +59,22 @@ a{
 
 }
 
+.colors_check{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.colors_answer{
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 20px;
+    width: 300px;
+
+}
+
 .timer{
     display: flex;
     flex-wrap: wrap;

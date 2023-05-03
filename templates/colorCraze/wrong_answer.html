@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block body %}
+    <h1>Color Craze</h1>
+    <h2>Ups, zła odpowiedź</h2>
+    <div class="card text-bg-light mb-3 colors_task" style="max-width: 18rem;">
+      <div class="card-header">{{ colors.task_type }}</div>
+      <div class="card-body">
+      <h5 class="card-title colors_question" style="color: {{ colors.task[1] }}">{{ colors.task[0] }}</h5>
+      </div>
+    </div>
+    <div class="colors_check">
+        <div class="card text-bg-light mb-3 colors_answer" style="max-width: 18rem;">
+    {#      <div class="card-header">Header</div>#}
+          <div class="card-body">
+            <h5 class="card-title">Twoja odpowidź</h5>
+            <p class="card-text" style="color:{{ colors.player.colors_answer[1] }}">{{ colors.player.colors_answer[0] }}</p>
+          </div>
+        </div>
+        <div class="card text-bg-light mb-3 colors_answer" style="max-width: 18rem;">
+    {#      <div class="card-header">Header</div>#}
+          <div class="card-body">
+            <h5 class="card-title">Poprawna odpowiedź</h5>
+            <p class="card-text" style="color:{{ colors.correct_answer[1] }}">{{ colors.correct_answer[0] }}</p>
+          </div>
+        </div>
+        </div>
+
+    <div class="container">
+        <a class="btn btn-primary btn-lg" href="{{ url_for("colors_question") }}" role="button">Rozumiem</a>
+    </div>
+
+{% endblock %}

@@ -66,7 +66,7 @@ def colors_check_answer():
         return redirect('/colors/question', code=302)
     print("bad answer")
     # session['last_page'] = 'check_answer'
-    # return render_template('formula/wrong_answer.html', formula=formula)
+    return render_template('colorCraze/wrong_answer.html', colors=colors)
 
 # @app.route('/formula/end')
 # def formula_end():
