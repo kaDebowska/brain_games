@@ -68,9 +68,9 @@ def colors_check_answer():
     # session['last_page'] = 'check_answer'
     return render_template('colorCraze/wrong_answer.html', colors=colors)
 
-# @app.route('/formula/end')
-# def formula_end():
-#     return render_template('formula/end.html', formula=formula)
+@app.route('/colors/end')
+def colors_end():
+    return render_template('colorCraze/end.html', colors=colors)
 
 # FORMULA #############################################################################################
 global formula
