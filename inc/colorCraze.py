@@ -63,8 +63,10 @@ class ColorCraze:
             random.shuffle(values)
             answers_colors = [self.correct_answer[1], self.colors_dict[self.correct_answer[0]]]
             colors = [color for color in self.colors if color not in answers_colors]
-            index = random.randint(0, len(colors) - 1)
-            answers_colors.append(colors[index])
+            for i in range(2):
+                index = random.randint(0, len(colors) - 1)
+                answers_colors.append(colors[index])
+            answers_colors.remove(self.correct_answer[1])
             random.shuffle(answers_colors)
             for i in range(3):
                 self.answers[values[i]] = answers_colors[i]

@@ -46,8 +46,8 @@ def colors_question():
 @app.route('/colors/answer/<key>')
 def colors_answer(key):
     time_left = session.get('time_left')
-    # if key not in colors.answers.keys():
-    #     return render_template('colorCraze/question.html', colors=colors, time_left=time_left)
+    if key not in colors.answers.keys():
+        return render_template('colorCraze/question.html', colors=colors, time_left=time_left)
     answer = [key, colors.answers[key]]
     colors.player.give_colors_answer(answer)
     print('colors.player.colors_answer', colors.player.colors_answer)
