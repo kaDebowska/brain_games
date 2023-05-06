@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Chimp Test{% endblock %}
+{% block body %}
+    <h1>Chimp Test</h1>
+    <div class="board">
+        <div class="board-row">
+        {% for i in range(8) %}
+            <div class="board-column">
+              {% for j in range(8) %}
+                {% set button_id = i * 8 + j %}
+                {% if button_id in chimpTest.visible_buttons %}
+                  {% set index =  chimpTest.visible_buttons.index(button_id) + 1 %}
+                  <button type="button" class="btn btn-danger square" id="{{ button_id }}">{{ index }}</button>
+                {% else %}
+                  <button type="button" class="btn btn-secondary square" id="{{ button_id }}" style="visibility: hidden">Button {{ button_id }}</button>
+                {% endif %}
+              {% endfor %}
+            </div>
+            {% endfor %}
+      </div>
+    </div>
+
+        </div>
+    </div>
+{% endblock %}

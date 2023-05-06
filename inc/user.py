@@ -4,6 +4,8 @@ class User:
         self.formula_points = 0
         self.colors_answer = []
         self.colors_points = 0
+        self.chimpTest_points = 0
+        self.chimpTest_answers = []
 
     def give_formula_answer(self, answer):
         self.formula_answers[self.formula_answers.index("?")] = answer

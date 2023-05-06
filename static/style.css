@@ -72,6 +72,27 @@ a{
     margin-right: 5%;
     font-size: 20px;
     width: 300px;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+
+.board-column{
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square{
+    width: 70px;
+    height: 70px;
+    border-radius: 0;
+    border: solid black 1px;
 
 }
 

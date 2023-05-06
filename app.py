@@ -6,21 +6,41 @@ from flask import session
 
 from inc.formula import Formula
 from inc.colorCraze import ColorCraze
+from inc.chimpTest import ChimpTest
 
 app = Flask(__name__)
 app.secret_key = "74a7aaa8-81ef-4fcd-b5ad-a1d2134a7cca"
-
-global colors
-colors = ColorCraze()
-colors.choose_task_type()
-colors.choose_task()
-colors.choose_correct_answer()
-colors.generate_answers()
 
 
 @app.route('/')
 def home():
     return render_template('home.html')
+
+global chimpTest
+chimpTest = ChimpTest()
+@app.route('/chimpTest/start')
+def chimp_test_start():
+    session['time_left'] = 30
+    chimpTest.player.chimpTest_points = 0
+    chimpTest.numbers = 3
+    return render_template('chimpTest/start.html')
+
+@app.route('/chimpTest/task')
+def chimp_test_task():
+    time_left = session.get('time_left')
+    chimpTest.numbers += 1
+    chimpTest.choose_buttons()
+
+    return render_template('chimpTest/task.html', chimpTest=chimpTest, time_left=time_left)
+
+# Color Craze ########################################################################################################
+global colors
+colors = ColorCraze()
+# colors.choose_task_type()
+# colors.choose_task()
+# colors.choose_correct_answer()
+# colors.generate_answers()
+
 
 @app.route('/colors/start')
 def colors_start():
