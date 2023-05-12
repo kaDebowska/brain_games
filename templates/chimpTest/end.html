@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block body %}
+    <h1>Twój wynik:</h1>
+    <h2>{{ chimpTest.player.chimpTest_score }}</h2>
+        <div class="container">
+            <a class="btn btn-primary btn-lg" href="{{ url_for("chimp_test_start") }}" role="button">Zagraj ponownie</a>
+    </div>
+{% endblock %}

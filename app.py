@@ -11,27 +11,52 @@ from inc.chimpTest import ChimpTest
 app = Flask(__name__)
 app.secret_key = "74a7aaa8-81ef-4fcd-b5ad-a1d2134a7cca"
 
-
 @app.route('/')
 def home():
     return render_template('home.html')
 
-global chimpTest
+# CHIMP TEST ################################################################################################
+
+# global chimpTest
 chimpTest = ChimpTest()
+
 @app.route('/chimpTest/start')
 def chimp_test_start():
-    session['time_left'] = 30
-    chimpTest.player.chimpTest_points = 0
+    chimpTest.player.chimpTest_score = 0
     chimpTest.numbers = 3
     return render_template('chimpTest/start.html')
 
 @app.route('/chimpTest/task')
 def chimp_test_task():
-    time_left = session.get('time_left')
+    chimpTest.player.chimpTest_score = len(chimpTest.player.chimpTest_answers)
+    chimpTest.player.chimpTest_answers = []
     chimpTest.numbers += 1
     chimpTest.choose_buttons()
+    return render_template('chimpTest/task.html', chimpTest=chimpTest)
 
-    return render_template('chimpTest/task.html', chimpTest=chimpTest, time_left=time_left)
+
+@app.route('/chimpTest/answer/<int:index>')
+def chimp_test_answer(index):
+    chimpTest.player.give_chimp_answers(chimpTest.visible_buttons[index])
+    if len(chimpTest.player.chimpTest_answers) == len(chimpTest.visible_buttons):
+        return redirect('/chimpTest/task')
+    print('player answers', chimpTest.player.chimpTest_answers)
+    print('chimpTest.visible_buttons', chimpTest.visible_buttons)
+    return redirect('/chimpTest/check_answer', code=302)
+
+
+@app.route('/chimpTest/check_answer')
+def chimp_test_check_answer():
+    i = len(chimpTest.player.chimpTest_answers)-1
+    if chimpTest.player.chimpTest_answers[i] == chimpTest.visible_buttons[i]:
+        return render_template('chimpTest/task.html', chimpTest=chimpTest)
+    else:
+        return redirect('/chimpTest/end', code=302)
+
+@app.route('/chimpTest/end')
+def chimp_test_end():
+    return render_template('chimpTest/end.html', chimpTest=chimpTest)
+
 
 # Color Craze ########################################################################################################
 global colors
@@ -128,6 +153,7 @@ def update_time():
     time_left = request.json['time_left']
     session['time_left'] = time_left
     return "success"
+
 @app.route('/formula/answer/<int:index>')
 def formula_answer(index):
     time_left = session.get('time_left')

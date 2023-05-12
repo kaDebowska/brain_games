@@ -10,6 +10,7 @@ class ChimpTest:
 
     def choose_buttons(self):
         self.visible_buttons = random.sample(range(64), self.numbers)
+        self.visible_buttons.sort()
         return self.visible_buttons
 
 
