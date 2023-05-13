@@ -11,9 +11,13 @@
                 {% if button_id in chimpTest.visible_buttons %}
                   {% set idx =  chimpTest.visible_buttons.index(button_id) %}
                   {% if chimpTest.player.chimpTest_answers and chimpTest.player.chimpTest_answers[0] == chimpTest.visible_buttons[0] %}
-                      <a href="{{ url_for("chimp_test_answer", index=idx) }}"><button type="button" class="btn btn-danger square" id="{{ button_id }}"></button></a>
+                      {% if button_id in chimpTest.player.chimpTest_answers %}
+                            <a href="{{ url_for("chimp_test_answer", index=idx) }}"><button type="button" class="btn btn-danger square" id="{{ button_id }}" style="visibility: hidden"></button></a>
+                          {% else %}
+                            <a href="{{ url_for("chimp_test_answer", index=idx) }}"><button type="button" class="btn btn-danger square" id="{{ button_id }}"></button></a>
+                      {% endif %}
                   {% else %}
-                      <a href="{{ url_for("chimp_test_answer", index=idx) }}"><button type="button" class="btn btn-danger square" id="{{ button_id }}">{{ idx + 1 }}</button></a>
+                      <a href="{{ url_for("chimp_test_answer", index=idx) }}" ><button type="button" class="btn btn-danger square" id="{{ button_id }}">{{ idx + 1 }}</button></a>
                   {% endif %}
                 {% else %}
                   <button type="button" class="btn btn-secondary square" id="{{ button_id }}" style="visibility: hidden">Button {{ button_id }}</button>
@@ -26,4 +30,9 @@
 
         </div>
     </div>
+    <script>
+        function hideButton(id){
+            document.getElementById(id).style.visibility = 'hidden';
+        }
+    </script>
 {% endblock %}
