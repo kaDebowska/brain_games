@@ -6,25 +6,34 @@
         <div class="board-row">
         {% for i in range(8) %}
             <div class="board-column">
-              {% for j in range(8) %}
-                {% set button_id = i * 8 + j %}
-                {% if button_id in chimpTest.visible_buttons %}
-                  {% set idx =  chimpTest.visible_buttons.index(button_id) %}
-                  {% if chimpTest.player.chimpTest_answers and chimpTest.player.chimpTest_answers[0] == chimpTest.visible_buttons[0] %}
-                      {% if button_id in chimpTest.player.chimpTest_answers %}
-                            <a href="{{ url_for("chimp_test_answer", index=idx) }}"><button type="button" class="btn btn-danger square" id="{{ button_id }}" style="visibility: hidden"></button></a>
-                          {% else %}
-                            <a href="{{ url_for("chimp_test_answer", index=idx) }}"><button type="button" class="btn btn-danger square" id="{{ button_id }}"></button></a>
-                      {% endif %}
+            {% for j in range(8) %}
+              {% set button_id = i * 8 + j %}
+              {% if button_id in chimpTest.visible_buttons %}
+                {% set idx =  chimpTest.visible_buttons.index(button_id) %}
+                {% set value = chimpTest.visible_buttons[idx] %}
+                {% if chimpTest.player.chimpTest_answers and chimpTest.player.chimpTest_answers[0] == chimpTest.visible_buttons[0] %}
+                  {% if value in chimpTest.player.chimpTest_answers %}
+                    <a href="{{ url_for("chimp_test_answer", value=value) }}">
+                      <button type="button" class="btn btn-danger square" id="{{ button_id }}" style="visibility: hidden"></button>
+                    </a>
                   {% else %}
-                      <a href="{{ url_for("chimp_test_answer", index=idx) }}" ><button type="button" class="btn btn-danger square" id="{{ button_id }}">{{ idx + 1 }}</button></a>
+                    <a href="{{ url_for("chimp_test_answer", value=value) }}">
+                      <button type="button" class="btn btn-danger square" id="{{ button_id }}"></button>
+                    </a>
                   {% endif %}
                 {% else %}
-                  <button type="button" class="btn btn-secondary square" id="{{ button_id }}" style="visibility: hidden">Button {{ button_id }}</button>
+                  <a href="{{ url_for("chimp_test_answer", value=value) }}" >
+                    <button type="button" class="btn btn-danger square" id="{{ button_id }}">{{ idx + 1 }}</button>
+                  </a>
                 {% endif %}
-              {% endfor %}
-            </div>
+              {% else %}
+                <button type="button" class="btn btn-secondary square" id="{{ button_id }}" style="visibility: hidden">Button {{ button_id }}</button>
+              {% endif %}
             {% endfor %}
+  </div>
+{% endfor %}
+
+
       </div>
     </div>
 
