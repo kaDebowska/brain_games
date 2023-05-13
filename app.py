@@ -22,9 +22,8 @@ chimpTest = ChimpTest()
 
 @app.route('/chimpTest/start')
 def chimp_test_start():
-    session.clear()  # Wyczyść sesję przy rozpoczęciu testu
     chimpTest.player.chimpTest_score = 0
-    chimpTest.numbers = 3
+    chimpTest.numbers = 4
     return render_template('chimpTest/start.html')
 
 
@@ -32,27 +31,18 @@ def chimp_test_start():
 def chimp_test_task():
     chimpTest.player.chimpTest_score = len(chimpTest.player.chimpTest_answers)
     chimpTest.player.chimpTest_answers = []
-    chimpTest.numbers += 1
     chimpTest.choose_buttons()
-
-
-    session['last_page'] = 'task'  # Zapisz informację o ostatniej odwiedzonej stronie w sesji
-
     return render_template('chimpTest/task.html', chimpTest=chimpTest)
 
 @app.route('/chimpTest/answer/<int:value>')
 def chimp_test_answer(value):
-    print('1session', session['last_page'])
-    print("1chimpTest.player.chimpTest_answers", chimpTest.player.chimpTest_answers)
-    if chimpTest.player.chimpTest_answers and session.get('last_page') != 'answer':
-        print('session', session['last_page'])
-        print("chimpTest.player.chimpTest_answers", chimpTest.player.chimpTest_answers)
-        # return redirect('/chimpTest/end', code=302)
+    referer = request.headers.get('Referer')
+    if referer and referer.endswith('/chimpTest/task') and chimpTest.player.chimpTest_answers:
+        return redirect('/chimpTest/end', code=302)
     chimpTest.player.give_chimp_answers(value)
-    print('session', session['last_page'])
     if len(chimpTest.player.chimpTest_answers) == len(chimpTest.visible_buttons):
+        chimpTest.numbers += 1
         return redirect('/chimpTest/task')
-    session['last_page'] = 'answer'  # Zapisz informację o ostatniej odwiedzonej stronie w sesji
     return redirect('/chimpTest/check_answer', code=302)
 
 @app.route('/chimpTest/check_answer')
@@ -65,7 +55,6 @@ def chimp_test_check_answer():
 
 @app.route('/chimpTest/end')
 def chimp_test_end():
-    session.clear()  # Wyczyść sesję przy zakończeniu testu
     return render_template('chimpTest/end.html', chimpTest=chimpTest)
 
 
