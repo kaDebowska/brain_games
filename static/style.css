@@ -16,9 +16,9 @@ a{
 .container{
     display: flex;
     flex-wrap: wrap;
-    margin-top: 100px;
     align-items: center;
     justify-content: space-around;
+    margin-top: 100px;
 }
 
 .formula_question{
@@ -105,5 +105,25 @@ a{
 
 .points{
     margin-right: 5%;
+}
+
+@media (max-width: 600px){
+    .image{
+        width: 90%;
+    }
+}
+
+.home_img {
+    margin-top: 40px;
+    position: relative;
+}
+
+.image {
+    display: block;
+    margin: 0 auto;
+}
+
+.test {
+    background-position: -6px -1px;
 }
 

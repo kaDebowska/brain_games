@@ -3,6 +3,7 @@ from flask import redirect
 from flask import request
 from flask import render_template
 from flask import session
+from flask import url_for
 
 from inc.formula import Formula
 from inc.colorCraze import ColorCraze
@@ -38,12 +39,12 @@ def chimp_test_task():
 def chimp_test_answer(value):
     referer = request.headers.get('Referer')
     if referer and referer.endswith('/chimpTest/task') and chimpTest.player.chimpTest_answers:
-        return redirect('/chimpTest/end', code=302)
+        return redirect(url_for('chimp_test_end'), code=302)
     chimpTest.player.give_chimp_answers(value)
     if len(chimpTest.player.chimpTest_answers) == len(chimpTest.visible_buttons):
         chimpTest.numbers += 1
-        return redirect('/chimpTest/task')
-    return redirect('/chimpTest/check_answer', code=302)
+        return redirect(url_for('chimp_test_task'))
+    return redirect(url_for('chimp_test_check_answer'), code=302)
 
 @app.route('/chimpTest/check_answer')
 def chimp_test_check_answer():
@@ -51,7 +52,7 @@ def chimp_test_check_answer():
     if chimpTest.player.chimpTest_answers[i] == chimpTest.visible_buttons[i]:
         return render_template('chimpTest/task.html', chimpTest=chimpTest)
     else:
-        return redirect('/chimpTest/end', code=302)
+        return redirect(url_for('chimp_test_end'), code=302)
 
 @app.route('/chimpTest/end')
 def chimp_test_end():
@@ -98,8 +99,8 @@ def colors_answer(key):
     print('colors.player.colors_answer', colors.player.colors_answer)
     if len(colors.player.colors_answer) == 2:
         print('tu powinno przejść do check')
-        return redirect('/colors/check_answer', code=302)
-    return redirect('/colors/question', code=302)
+        return redirect(url_for('colors_check_answer'), code=302)
+    return redirect(url_for('colors_question'), code=302)
 
 
 @app.route('/colors/check_answer')
@@ -108,7 +109,7 @@ def colors_check_answer():
     print('colors.correct_answer', colors.correct_answer)
     if sorted(colors.player.colors_answer) == sorted(colors.correct_answer):
         colors.player.colors_points += 1
-        return redirect('/colors/question', code=302)
+        return redirect(url_for('colors_question'), code=302)
     print("bad answer")
     # session['last_page'] = 'check_answer'
     return render_template('colorCraze/wrong_answer.html', colors=colors)
@@ -167,8 +168,8 @@ def formula_answer(index):
         print('formula.player.formula_answers', formula.player.formula_answers)
         if "?" in formula.player.formula_answers:
             return render_template('formula/question.html', formula=formula, time_left=time_left)
-        return redirect('/formula/check_answer', code=302)
-    return redirect('/formula/question', code=302)
+        return redirect(url_for('formula_check_answer'), code=302)
+    return redirect(url_for('formula_question'), code=302)
 
 
 @app.route('/formula/check_answer')
@@ -177,7 +178,7 @@ def formula_check_answer():
         print('formula.player.formula_answers', formula.player.formula_answers)
         print('formula.correct_answers', formula.correct_answers)
         formula.player.formula_points += 1
-        return redirect('/formula/question', code=302)
+        return redirect(url_for('formula_question'), code=302)
     print("bad answer")
     session['last_page'] = 'check_answer'
     return render_template('formula/wrong_answer.html', formula=formula)
