@@ -5,16 +5,93 @@ from flask import render_template
 from flask import session
 from flask import url_for
 
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
+
 from inc.formula import Formula
 from inc.colorCraze import ColorCraze
 from inc.chimpTest import ChimpTest
 
+import re
+
 app = Flask(__name__)
 app.secret_key = "74a7aaa8-81ef-4fcd-b5ad-a1d2134a7cca"
+
+# db_username = config.db_username
+# db_password = config.db_password
+#
+# app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://20_debowska:dbpass9321@limba.wzks.uj.edu.pl:3306/20_debowska'
+#
+# app.config['MYSQL_HOST'] = 'limba.wzks.uj.edu.pl'
+# app.config['MYSQL_USER'] = '20_debowska'
+# app.config['MYSQL_PASSWORD'] = 'dbpass9321'
+# app.config['MYSQL_DB'] = '20_debowska'
+
+
+db_username = 'root'
+db_password = 'dbpassword'
+
+app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql://{db_username}:{db_password}@localhost:3306/sys'
+
+db = SQLAlchemy(app)
+
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String, unique=True, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
+    password = db.Column(db.String, nullable=False)
+
+    def __init__(self, username, email, password):
+        self.username = username
+        self.email = email
+        self.password = password
 
 @app.route('/')
 def home():
     return render_template('home.html')
+
+@app.route('/registration',  methods=['GET', 'POST'])
+def register():
+    error = ''
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        repeat_password = request.form['repeat_password']
+        hashed_password = generate_password_hash(password)
+
+        existing_user = Users.query.filter_by(username=username).first()
+        if existing_user:
+            error = "Użytkownik o tej nazwie już istnieje. Wybierz inną nazwę użytkownika."
+            return render_template('registration.html', error=error)
+
+        if repeat_password != password:
+            error = "Wartości pól hasło i powtórz hasło muszą być takie same"
+            return render_template('registration.html', error=error)
+
+        new_user = Users(username=username, email=email, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        return redirect(url_for('login'))
+    return render_template('registration.html', error=error)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = ''
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        user = Users.query.filter_by(username=username).first()
+        if user and check_password_hash(user.password, password):
+            session['user_id'] = user.id
+            return redirect(url_for('home'))
+        else:
+            error = 'Nazwa użytkownika lub hasło są niepoprawne'
+            return render_template('login.html', error=error)
+    return render_template('login.html', error=error)
+
 
 # CHIMP TEST ################################################################################################
 
@@ -188,6 +265,8 @@ def formula_end():
     return render_template('formula/end.html', formula=formula)
 
 
+with app.app_context():
+    db.create_all()
 
 if __name__ == '__main__':
     app.run(debug=True)

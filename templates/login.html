@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Logowanie{% endblock %}
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+    <div class="container form_div">
+        <form method="POST">
+        <div class="mb-3">
+        <label for="username" class="form-label">Nazwa użytkownika</label>
+        <input name="username" type="text" class="form-control" id="username">
+      </div>
+      <div class="mb-3">
+        <label for="inputPassword3" class="form-label">Hasło</label>
+        <input name="password" type="password" class="form-control" id="inputPassword3">
+      </div>
+       <div class="container registration_btn">
+           <button type="submit" class="btn btn-primary">Zaloguj się</button>
+       </div>
+    </form>
+    </div>
+{% endblock %}
