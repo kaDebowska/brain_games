@@ -7,12 +7,12 @@ from flask import url_for
 from flask import flash
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
 
 from inc.formula import Formula
 from inc.colorCraze import ColorCraze
 from inc.chimpTest import ChimpTest
+from inc.models import Users, Games, Results, db
 
 import re
 
@@ -35,19 +35,7 @@ db_password = 'dbpassword'
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql://{db_username}:{db_password}@localhost:3306/sys'
 
-db = SQLAlchemy(app)
-
-
-class Users(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String, unique=True, nullable=False)
-    email = db.Column(db.String, unique=True, nullable=False)
-    password = db.Column(db.String, nullable=False)
-
-    def __init__(self, username, email, password):
-        self.username = username
-        self.email = email
-        self.password = password
+db.init_app(app)
 
 
 @app.route('/')
@@ -63,10 +51,15 @@ def register():
         password = request.form['password']
         repeat_password = request.form['repeat_password']
         hashed_password = generate_password_hash(password)
+        pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
 
         existing_user = Users.query.filter_by(username=username).first()
         if existing_user:
             flash("Użytkownik o tej nazwie już istnieje. Wybierz inną nazwę użytkownika.")
+            return render_template('registration.html')
+
+        if not re.match(pattern, email):
+            flash("Podaj poprawny adres email.")
             return render_template('registration.html')
 
         if repeat_password != password:
@@ -121,57 +114,6 @@ def login_required(f):
     return decorated_function
 
 
-# CHIMP TEST ################################################################################################
-
-# global chimpTest
-chimpTest = ChimpTest()
-
-
-@app.route('/chimpTest/start')
-@login_required
-def chimp_test_start():
-    chimpTest.player.chimpTest_score = 0
-    chimpTest.numbers = 4
-    return render_template('chimpTest/start.html')
-
-
-@app.route('/chimpTest/task')
-@login_required
-def chimp_test_task():
-    chimpTest.player.chimpTest_score = len(chimpTest.player.chimpTest_answers)
-    chimpTest.player.chimpTest_answers = []
-    chimpTest.choose_buttons()
-    return render_template('chimpTest/task.html', chimpTest=chimpTest)
-
-
-@app.route('/chimpTest/answer/<int:value>')
-@login_required
-def chimp_test_answer(value):
-    referer = request.headers.get('Referer')
-    if referer and referer.endswith('/chimpTest/task') and chimpTest.player.chimpTest_answers:
-        return redirect(url_for('chimp_test_end'), code=302)
-    chimpTest.player.give_chimp_answers(value)
-    if len(chimpTest.player.chimpTest_answers) == len(chimpTest.visible_buttons):
-        chimpTest.numbers += 1
-        return redirect(url_for('chimp_test_task'))
-    return redirect(url_for('chimp_test_check_answer'), code=302)
-
-
-@app.route('/chimpTest/check_answer')
-@login_required
-def chimp_test_check_answer():
-    i = len(chimpTest.player.chimpTest_answers) - 1
-    if chimpTest.player.chimpTest_answers[i] == chimpTest.visible_buttons[i]:
-        return render_template('chimpTest/task.html', chimpTest=chimpTest)
-    else:
-        return redirect(url_for('chimp_test_end'), code=302)
-
-
-@app.route('/chimpTest/end')
-@login_required
-def chimp_test_end():
-    return render_template('chimpTest/end.html', chimpTest=chimpTest)
-
 
 # Color Craze ########################################################################################################
 
@@ -182,6 +124,7 @@ colors = ColorCraze()
 @login_required
 def colors_start():
     session['time_left'] = 30
+    session['game_id'] = 1
     colors.player.colors_points = 0
     return render_template('colorCraze/start.html')
 
@@ -228,7 +171,81 @@ def colors_check_answer():
 @app.route('/colors/end')
 @login_required
 def colors_end():
-    return render_template('colorCraze/end.html', colors=colors)
+    user_id = session.get('user_id')
+    game_id = session.get('game_id')
+
+    if user_id and game_id:
+        result = Results(colors.player.colors_points, user_id, game_id)
+        db.session.add(result)
+        db.session.commit()
+        return render_template('colorCraze/end.html', colors=colors)
+    else:
+        return redirect(url_for('home'), code=302)
+
+
+# CHIMP TEST ################################################################################################
+
+# global chimpTest
+chimpTest = ChimpTest()
+
+
+@app.route('/chimpTest/start')
+@login_required
+def chimp_test_start():
+    session['game_id'] = 2
+    chimpTest.player.chimpTest_score = 0
+    chimpTest.numbers = 4
+    return render_template('chimpTest/start.html')
+
+
+@app.route('/chimpTest/task')
+@login_required
+def chimp_test_task():
+    if chimpTest.numbers > 4:
+        chimpTest.player.chimpTest_score = len(chimpTest.player.chimpTest_answers)
+    chimpTest.player.chimpTest_answers = []
+    chimpTest.choose_buttons()
+    return render_template('chimpTest/task.html', chimpTest=chimpTest)
+
+
+@app.route('/chimpTest/answer/<int:value>')
+@login_required
+def chimp_test_answer(value):
+    referer = request.headers.get('Referer')
+    if referer and referer.endswith('/chimpTest/task') and chimpTest.player.chimpTest_answers:
+        return redirect(url_for('chimp_test_end'), code=302)
+    chimpTest.player.give_chimp_answers(value)
+    if len(chimpTest.player.chimpTest_answers) == len(chimpTest.visible_buttons):
+        chimpTest.numbers += 1
+        return redirect(url_for('chimp_test_task'))
+    return redirect(url_for('chimp_test_check_answer'), code=302)
+
+
+@app.route('/chimpTest/check_answer')
+@login_required
+def chimp_test_check_answer():
+    i = len(chimpTest.player.chimpTest_answers) - 1
+    if chimpTest.player.chimpTest_answers[i] == chimpTest.visible_buttons[i]:
+        return render_template('chimpTest/task.html', chimpTest=chimpTest)
+    else:
+        return redirect(url_for('chimp_test_end'), code=302)
+
+
+@app.route('/chimpTest/end')
+@login_required
+def chimp_test_end():
+    user_id = session.get('user_id')
+    game_id = session.get('game_id')
+
+    if user_id and game_id:
+        result = Results(chimpTest.player.chimpTest_score, user_id, game_id)
+        db.session.add(result)
+        db.session.commit()
+        return render_template('chimpTest/end.html', chimpTest=chimpTest)
+    else:
+        return redirect(url_for('home'), code=302)
+
+
 
 
 # FORMULA #############################################################################################
@@ -240,6 +257,7 @@ formula = Formula()
 @login_required
 def formula_start():
     session['time_left'] = 30
+    session['game_id'] = 3
     formula.player.formula_points = 0
     return render_template('formula/start.html')
 
@@ -294,7 +312,17 @@ def formula_check_answer():
 @app.route('/formula/end')
 @login_required
 def formula_end():
-    return render_template('formula/end.html', formula=formula)
+    user_id = session.get('user_id')
+    game_id = session.get('game_id')
+
+    if user_id and game_id:
+        result = Results(formula.player.formula_points, user_id, game_id)
+        db.session.add(result)
+        db.session.commit()
+        return render_template('formula/end.html', formula=formula)
+    else:
+        return redirect(url_for('home'), code=302)
+
 
 
 with app.app_context():
