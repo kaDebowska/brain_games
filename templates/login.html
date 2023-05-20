@@ -1,11 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Logowanie{% endblock %}
 {% block body %}
-    {% if error %}
-        <div class="alert alert-danger" role="alert">
-            {{ error }}
-        </div>
-    {% endif %}
     <div class="container form_div">
         <form method="POST">
         <div class="mb-3">
@@ -20,5 +15,8 @@
            <button type="submit" class="btn btn-primary">Zaloguj się</button>
        </div>
     </form>
+    </div>
+    <div class="container">
+        <a href="{{ url_for('register') }}">Niem masz jeszcze konta? Zarejestruj się.</a>
     </div>
 {% endblock %}
