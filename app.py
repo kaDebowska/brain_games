@@ -14,24 +14,16 @@ from inc.colorCraze import ColorCraze
 from inc.chimpTest import ChimpTest
 from inc.models import Users, Games, Results, db
 
+from datetime import datetime
 import re
+
+import config
 
 app = Flask(__name__)
 app.secret_key = "74a7aaa8-81ef-4fcd-b5ad-a1d2134a7cca"
 
-# db_username = config.db_username
-# db_password = config.db_password
-#
-# app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://20_debowska:dbpass9321@limba.wzks.uj.edu.pl:3306/20_debowska'
-#
-# app.config['MYSQL_HOST'] = 'limba.wzks.uj.edu.pl'
-# app.config['MYSQL_USER'] = '20_debowska'
-# app.config['MYSQL_PASSWORD'] = 'dbpass9321'
-# app.config['MYSQL_DB'] = '20_debowska'
-
-
-db_username = 'root'
-db_password = 'dbpassword'
+db_username = config.db_username
+db_password = config.db_password
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f'mysql://{db_username}:{db_password}@localhost:3306/sys'
 
@@ -175,7 +167,8 @@ def colors_end():
     game_id = session.get('game_id')
 
     if user_id and game_id:
-        result = Results(colors.player.colors_points, user_id, game_id)
+        end_time = datetime.now()
+        result = Results(colors.player.colors_points, end_time, user_id, game_id)
         db.session.add(result)
         db.session.commit()
         return render_template('colorCraze/end.html', colors=colors)
@@ -238,7 +231,8 @@ def chimp_test_end():
     game_id = session.get('game_id')
 
     if user_id and game_id:
-        result = Results(chimpTest.player.chimpTest_score, user_id, game_id)
+        end_time = datetime.now()
+        result = Results(colors.player.colors_points, end_time, user_id, game_id)
         db.session.add(result)
         db.session.commit()
         return render_template('chimpTest/end.html', chimpTest=chimpTest)
@@ -316,7 +310,8 @@ def formula_end():
     game_id = session.get('game_id')
 
     if user_id and game_id:
-        result = Results(formula.player.formula_points, user_id, game_id)
+        end_time = datetime.now()
+        result = Results(colors.player.colors_points, end_time, user_id, game_id)
         db.session.add(result)
         db.session.commit()
         return render_template('formula/end.html', formula=formula)

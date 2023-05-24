@@ -27,11 +27,13 @@ class Games(db.Model):
 class Results(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     result = db.Column(db.Integer, nullable=False)
+    result_time = db.Column(db.DateTime, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     game_id = db.Column(db.Integer, db.ForeignKey('games.id'), nullable=False)
 
-    def __init__(self, result, user_id, game_id):
+    def __init__(self, result, result_time, user_id, game_id):
         self.result = result
+        self.result_time = result_time
         self.user_id = user_id
         self.game_id = game_id
 
