@@ -1,8 +1,14 @@
 {% extends "base.html" %}
+{% block stylesheets %}
+     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
 {% block body %}
     <h1>Twój wynik:</h1>
     <h2>{{ formula.player.formula_points }}</h2>
-        <div class="container">
+    <div>
+        {{ plot_div|safe }}
+    </div>
+        <div class="container btn-container">
             <a class="btn btn-primary btn-lg" href="{{ url_for("formula_start") }}" role="button">Zagraj ponownie</a>
     </div>
 {% endblock %}

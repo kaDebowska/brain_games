@@ -2,7 +2,10 @@
 {% block body %}
     <h1>Twój wynik:</h1>
     <h2>{{ chimpTest.player.chimpTest_score }}</h2>
-        <div class="container">
+    <div>
+        {{ plot|safe }}
+    </div>
+        <div class="container btn-container">
             <a class="btn btn-primary btn-lg" href="{{ url_for("chimp_test_start") }}" role="button">Zagraj ponownie</a>
     </div>
 {% endblock %}

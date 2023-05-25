@@ -23,7 +23,10 @@ a{
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    margin-top: 100px;
+}
+
+.btn-container{
+    margin-top: 20px;
 }
 
 .formula_question{

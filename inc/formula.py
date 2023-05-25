@@ -2,6 +2,7 @@ import random
 
 from inc.user import User
 
+
 class Formula:
     def __init__(self):
         self.correct_answers = []
@@ -38,11 +39,12 @@ class Formula:
             answer = random.randint(1, 50)
             if answer not in self.correct_answers:
                 self.all_answers.append(answer)
-                counter += 1
-        while self.all_answers[0] + self.all_answers[1] == self.correct_answers[0] + self.correct_answers[1] or \
-                abs(self.all_answers[0] - self.all_answers[1]) == abs(self.correct_answers[0] - self.correct_answers[1]):
-            self.all_answers.pop(0)
-            self.all_answers.append(random.randint(1, 50))
+            if len(self.all_answers) == 2 and \
+                    (self.all_answers[0] + self.all_answers[1] == self.correct_answers[0] + self.correct_answers[1] or
+                     abs(self.all_answers[0] - self.all_answers[1]) == abs(self.correct_answers[0] - self.correct_answers[1])):
+                self.all_answers.pop(0)
+                self.all_answers.append(random.randint(1, 50))
+            counter += 1
         self.all_answers.extend(self.correct_answers)
         random.shuffle(self.all_answers)
         return self.all_answers

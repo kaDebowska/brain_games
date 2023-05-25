@@ -6,6 +6,9 @@ from flask import session
 from flask import url_for
 from flask import flash
 
+
+import plotly.graph_objects as go
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 
@@ -171,7 +174,8 @@ def colors_end():
         result = Results(colors.player.colors_points, end_time, user_id, game_id)
         db.session.add(result)
         db.session.commit()
-        return render_template('colorCraze/end.html', colors=colors)
+        plot = create_plot()
+        return render_template('colorCraze/end.html', colors=colors, plot=plot)
     else:
         return redirect(url_for('home'), code=302)
 
@@ -232,10 +236,11 @@ def chimp_test_end():
 
     if user_id and game_id:
         end_time = datetime.now()
-        result = Results(colors.player.colors_points, end_time, user_id, game_id)
+        result = Results(chimpTest.player.chimpTest_score, end_time, user_id, game_id)
         db.session.add(result)
         db.session.commit()
-        return render_template('chimpTest/end.html', chimpTest=chimpTest)
+        plot = create_plot()
+        return render_template('chimpTest/end.html', chimpTest=chimpTest, plot=plot)
     else:
         return redirect(url_for('home'), code=302)
 
@@ -311,13 +316,21 @@ def formula_end():
 
     if user_id and game_id:
         end_time = datetime.now()
-        result = Results(colors.player.colors_points, end_time, user_id, game_id)
+        result = Results(formula.player.formula_points, end_time, user_id, game_id)
         db.session.add(result)
         db.session.commit()
-        return render_template('formula/end.html', formula=formula)
+        plot = create_plot()
+        return render_template('formula/end.html', formula=formula, plot=plot)
     else:
         return redirect(url_for('home'), code=302)
 
+def create_plot():
+    user_results = Results.query.filter_by(user_id=session.get('user_id'), game_id=session.get('game_id')).all()
+    time = [result.result_time for result in user_results]
+    result = [result.result for result in user_results]
+    fig = go.Figure(data=go.Scatter(x=time, y=result))
+    plot = fig.to_html(full_html=False)
+    return plot
 
 
 with app.app_context():
@@ -325,3 +338,5 @@ with app.app_context():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
