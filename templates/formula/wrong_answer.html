@@ -2,14 +2,14 @@
 {% block body %}
     <h1>Formula</h1>
     <h2>Ups, zła odpowiedź</h2>
-    <div class="card text-bg-danger mb-3 container" style="max-width: 18rem;">
+    <div class="card text-bg-danger mb-3 container answer_card" style="max-width: 18rem;">
 {#      <div class="card-header">Header</div>#}
       <div class="card-body">
         <h5 class="card-title">Twoja odpowidź</h5>
         <p class="card-text">{{ formula.player.formula_answers[0] }} {{ formula.operator }} {{ formula.player.formula_answers[1] }} = {{ formula.result }}</p>
       </div>
     </div>
-    <div class="card text-bg-success mb-3 container" style="max-width: 18rem;">
+    <div class="card text-bg-success mb-3 container answer_card" style="max-width: 18rem;">
 {#      <div class="card-header">Header</div>#}
       <div class="card-body">
         <h5 class="card-title">Poprawna odpowiedź</h5>
@@ -17,8 +17,8 @@
       </div>
     </div>
 
-    <div class="container btn-container">
-        <a class="btn btn-primary btn-lg" href="{{ url_for("formula_question") }}" role="button">Rozumiem</a>
+    <div class="container understood-container">
+        <a class="btn btn-primary btn-understood" href="{{ url_for("formula_question") }}" role="button">Rozumiem</a>
     </div>
 
 {% endblock %}

@@ -1,8 +1,23 @@
 {% extends "base.html" %}
 {% block body %}
-    <h1>Formula</h1>
-    <div class="container btn-container">
-    <a href="{{ url_for("formula_question") }}"><button type="button" class="btn btn-primary btn-lg">Rozpocznij grę</button></a>
+    <h1>Ćwicz rozumowanie!</h1>
+    <div class="card text-center instruction">
+      <div class="card-header">
+        Instrukcja
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Formula</h4>
+        <p class="card-text">Na ekranie zobaczysz wynik operacji matematycznej (dodawania lub odejmowania)
+            oraz 4 odpowiedzi zawierające różne liczby. Twoim zadaniem będzie wybranie 2 odpowiedzi
+            w taki sposób, aby po wstawieniu ich do równania dawały oczekiwany wynik.
+            Gra trwa 30 sekund, dlatego staraj się wykonywać obliczenia jak najszybciej.</p>
+      </div>
+      <div class="card-footer text-muted">
+          <a href="{{ url_for("formula_question") }}"><button type="button" class="btn btn-primary">Rozpocznij grę</button></a>
+      </div>
     </div>
+{#    <div class="container btn-container">#}
+{#    <a href="{{ url_for("formula_question") }}"><button type="button" class="btn btn-primary btn-lg">Rozpocznij grę</button></a>#}
+{#    </div>#}
 
 {% endblock %}

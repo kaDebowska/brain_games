@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 {% block title %}Chimp Test{% endblock %}
 {% block body %}
-    <h1>Chimp Test</h1>
-    <div class="container btn-container">
-    <a href="{{ url_for("chimp_test_task") }}"><button type="button" class="btn btn-primary btn-lg">Rozpocznij grę</button></a>
+    <h1>Ćwicz pamięć!</h1>
+    <div class="card text-center instruction">
+      <div class="card-header">
+        Instrukcja
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Chimp test</h4>
+        <p class="card-text">Na ekranie zobaczysz 4 pola oznaczone numerami 1-4.
+            Twoim zadaniem jest zapamiętanie kolejności pól. Gdy naciśniesz pole z numerem 1, pozostałe liczby znikną,
+            a Ty będziesz musiał wybierać kolejne pola zgodnie z numerami, którymi były oznaczone.
+            Jeśli wykonasz to zadanie poprawnie, przejdziesz do kolejnego poziomu, w którym zobaczysz o 1 pole więcej. </p>
+      </div>
+      <div class="card-footer text-muted">
+           <a href="{{ url_for("chimp_test_task") }}"><button type="button" class="btn btn-primary">Rozpocznij grę</button></a>
+      </div>
     </div>
-
 {% endblock %}

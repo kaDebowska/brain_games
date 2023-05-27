@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 {% block title %}Color Craze{% endblock %}
 {% block body %}
-    <h1>Color craze</h1>
-    <div class="container btn-container">
-    <a href="{{ url_for("colors_question") }}"><button type="button" class="btn btn-primary btn-lg">Rozpocznij grę</button></a>
+    <h1>Ćwicz uwagę!</h1>
+    <div class="card text-center instruction">
+      <div class="card-header">
+        Instrukcja
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Color craze</h4>
+        <p class="card-text">Na ekranie zobaczysz kartę z nazwą koloru. Nazwa ta będzie jednak zapisana kolorem
+            niezgodnym ze znaczeniem słowa, np. <span style="color: green">niebieski</span>. Dodatkowo na karcie zobaczysz jedno z dwóch słów:
+            <q>kolor</q> lub <q>znaczenie</q>.  Będzie to wskazówka, na co masz zwrócić <b>uwagę</b> przy wybieraniu odpowiedzi.
+            Jeśli zobaczysz słowo kolor, wybierz odpowiedź zapisaną odpowiednim kolorem,
+            a jeśli znaczenie – wybierz odpowiedź zgodną ze znaczeniem wyświetlanego słowa. </p>
+      </div>
+      <div class="card-footer text-muted">
+          <a href="{{ url_for("colors_question") }}"><button type="button" class="btn btn-primary">Rozpocznij grę</button></a>
+      </div>
     </div>
 
 {% endblock %}

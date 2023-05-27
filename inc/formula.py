@@ -37,14 +37,18 @@ class Formula:
         counter = 0
         while counter < 2:
             answer = random.randint(1, 50)
-            if answer not in self.correct_answers:
+            if answer not in self.correct_answers and answer not in self.all_answers:
                 self.all_answers.append(answer)
-            if len(self.all_answers) == 2 and \
-                    (self.all_answers[0] + self.all_answers[1] == self.correct_answers[0] + self.correct_answers[1] or
-                     abs(self.all_answers[0] - self.all_answers[1]) == abs(self.correct_answers[0] - self.correct_answers[1])):
-                self.all_answers.pop(0)
-                self.all_answers.append(random.randint(1, 50))
-            counter += 1
+                counter += 1
+        if (self.all_answers[0] + self.all_answers[1] == self.correct_answers[0] + self.correct_answers[1] or
+                abs(self.all_answers[0] - self.all_answers[1]) == abs(
+                    self.correct_answers[0] - self.correct_answers[1])):
+            new_answer = random.randint(1, 50)
+            while new_answer in self.all_answers or new_answer in self.correct_answers:
+                new_answer = random.randint(1, 50)
+            self.all_answers.pop(0)
+            self.all_answers.append(new_answer)
+
         self.all_answers.extend(self.correct_answers)
         random.shuffle(self.all_answers)
         return self.all_answers

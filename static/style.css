@@ -31,6 +31,7 @@ a{
 
 .formula_question{
     font-size: 30px;
+    margin-top: 100px;
 }
 
 .answer_buttons{
@@ -143,3 +144,155 @@ a{
     margin-top: 30px;
 }
 
+.instruction{
+    width: 50%;
+    margin: 100px auto auto;
+}
+
+.card-header{
+    font-size: 1.5rem;
+}
+
+.answer_card{
+    margin-top: 60px;
+}
+
+.understood-container{
+    margin-top: 100px;
+}
+
+.btn-understood{
+    width: 10%;
+    padding: 10px;
+}
+
+
+.info-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: -20px;
+    background-color: rgba(121, 161, 180, 0.51);
+}
+.info-title h1{
+    padding-top:50px;
+}
+
+.info-title img{
+   margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.cognitive-functions{
+    width: 50%;
+    margin-top: 40px;
+    float: right;
+    margin-right: 10%;
+    font-size: 20px;
+}
+
+.functions{
+    width: 40%;
+    margin-right: 15%;
+}
+
+
+.info-memo p{
+    margin: 0;
+}
+
+.info-memo{
+    background-repeat: no-repeat;
+    padding: 50px;
+    box-sizing: border-box;
+    width: 400px;
+    height: 400px;
+    /*margin-top: 70px;*/
+    margin-left: 8%;
+    font-size: 18px;
+}
+
+.memo-functions{
+    background-image: url("images/memo-yellow.png");
+    margin-top: -20px;
+}
+
+.info-memo p{
+    margin-bottom: -15px;
+}
+
+.perception{
+    float: left;
+    margin-left: 10%;
+}
+
+.memo-perception{
+    background-image: url("images/memo-pink.png");
+    float: right;
+    margin-right: 10%;
+    margin-top: -200px;
+}
+
+.top-down{
+    width: 40%;
+    margin-top: -150px;
+}
+
+.top-down h3{
+    margin-left: 20px;
+}
+
+.memo-bottom{
+    background-image: url("images/memo-pink.png");
+    margin-top: 400px;
+}
+
+.memo-top{
+    background-image: url("images/memo-pink.png");
+    float: right;
+    margin-right: 30%;
+    margin-top: -400px;
+}
+
+#attention{
+    margin-top: 50px;
+}
+
+.functions-header{
+    margin-bottom: -20px;
+}
+
+.memo-attention{
+    background-image: url("images/memo-green.png");
+}
+
+.memo-attention-functions{
+    background-image: url("images/memo-green.png");
+    margin-left: 40%;
+    margin-top: -300px;
+}
+
+.memo-attention-functions2{
+    background-image: url("images/memo-green.png");
+    float: right;
+    margin-top: -400px;
+    margin-right: 5%;
+}
+
+@media (max-width: 1300px){
+    .cognitive-functions{
+        display: flex;
+        width: 80%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .info-memo{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }
+
+}
