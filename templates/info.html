@@ -4,14 +4,8 @@
         <h1>Zdolności poznawcze</h1>
         <img src="{{ url_for('static', filename='/images/brain-info.png') }}" alt="mózg_logo" width="200px" height="170px">
     </div>
-        <h2>Czym są zdolności poznawcze?</h2>
-    <div class="cognitive-functions functions">
-        <p>Zdolności poznawcze to funkcje ludzkiego umysłu, które pozwalają na
-            <b> odbieranie, przetwarzanie i gromadzenie informacji z otoczenia</b>.
-            Dzięki nim człowiek jest w stanie poznawać świat i tworzyć jego obraz w umyśle.
-            Zdolności poznawcze są przez nas wykorzystywane nieustannie. Większość codziennych czynności wymaga
-            zaangażowania przynajmniej części z nich. </p>
-    </div>
+    <h2>Czym są zdolności poznawcze?</h2>
+    <div class="info-container functions-container">
         <div class="info-memo memo-functions">
             <p>Do zdolności poznawczych należą m.in.:</p>
             <ul>
@@ -20,72 +14,86 @@
                 <li>pamięć,</li>
                 <li>rozumowanie.</li>
             </ul>
+        </div>
+        <div class="cognitive-functions functions">
+            <p>Zdolności poznawcze to funkcje ludzkiego umysłu, które pozwalają na
+                <b> odbieranie, przetwarzanie i gromadzenie informacji z otoczenia</b>.
+                Dzięki nim człowiek jest w stanie poznawać świat i tworzyć jego obraz w umyśle.
+                Zdolności poznawcze są przez nas wykorzystywane nieustannie. Większość codziennych czynności wymaga
+                zaangażowania przynajmniej części z nich. </p>
+        </div>
     </div>
+
     <h2 class="functions-header">Percepcja</h2>
-    <div class="cognitive-functions perception">
-        <p>Percepcja jest najbardziej elementarnym procesem poznawczym. Jej główne zadanie polega na
-            odbieraniu, przetwarzaniu i interpretowaniu <b>informacji pochodzących ze zmysłów</b>.
-            Dzięki percepcji możliwe jest wyodrębnianie podstawowych cech obiektów, takich jak:
-            <b>kolor, kształt, wielkość, temperatura</b>.</p>
-    </div>
-        <div class="info-memo memo-perception">
-        <p>Klasycznie wyróżnia się 5 typów percepcji:</p>
-        <ul>
-            <li>wzrokową,</li>
-            <li>słuchową,</li>
-            <li>dotykową,</li>
-            <li>węchową,</li>
-            <li>smakową.</li>
-        </ul>
-    </div>
+    <div class="info-container perception-container">
+        <div class="cognitive-functions perception">
+            <p>Percepcja jest najbardziej elementarnym procesem poznawczym. Jej główne zadanie polega na
+                odbieraniu, przetwarzaniu i interpretowaniu <b>informacji pochodzących ze zmysłów</b>.
+                Dzięki percepcji możliwe jest wyodrębnianie podstawowych cech obiektów, takich jak:
+                <b>kolor, kształt, wielkość, temperatura</b>.</p>
+        </div>
+            <div class="info-memo memo-perception">
+            <p>Klasycznie wyróżnia się 5 typów percepcji:</p>
+            <ul>
+                <li>wzrokową,</li>
+                <li>słuchową,</li>
+                <li>dotykową,</li>
+                <li>węchową,</li>
+                <li>smakową.</li>
+            </ul>
+        </div>
 
-        <div class="cognitive-functions perception top-down">
-        <h3>Procesy oddolne i odgórne</h3>
-        <p>Choć może się wydawać, że percepcja przebiega w sposób natychmiastowy i automatyczny,
-            wymaga integracji dwóch rodzajów procesów: oddolnych i odgórnych.</p>
+            <div class="cognitive-functions perception top-down">
+            <h3>Procesy oddolne i odgórne</h3>
+            <p>Choć może się wydawać, że percepcja przebiega w sposób natychmiastowy i automatyczny,
+                wymaga integracji dwóch rodzajów procesów: oddolnych i odgórnych.</p>
+        </div>
+        <div class="info-memo memo-bottom">
+            <p><b>Procesy oddolne</b> (bottom-up) bazują na informacjach dostarczanych przez narządy zmysłów.
+                Przebiegają w trzech etapach:</p>
+            <ol>
+                <li>Odbiór wrażeń zmysłowych.</li>
+                <li>Rozpoznanie elementarnych cech obiektu i połączenie ich w większą całość.</li>
+                <li>Identyfikacja obiektu na podstawie posiadanej wiedzy.</li>
+            </ol>
+        </div>
+        <div class="info-memo memo-top">
+            <p><b>Procesy odgórne</b> (top-down) wykorzystują zgromadzoną wiedzę i doświadczenie do rozpoznawania bodźców.
+                Dzięki nim możliwa jest stałość spostrzegania (wielkości, kształtu, barwy).
+                W procesach odgórnych ważną rolę odgrywa nastawienie, które może przyczynić się do
+                powstawania błędów percepcyjnych oraz złudzeń optycznych.</p>
+        </div>
     </div>
-    <div class="info-memo memo-bottom">
-        <p><b>Procesy oddolne</b> (bottom-up) bazują na informacjach dostarczanych przez narządy zmysłów.
-            Przebiegają w trzech etapach:</p>
-        <ol>
-            <li>Odbiór wrażeń zmysłowych.</li>
-            <li>Rozpoznanie elementarnych cech obiektu i połączenie ich w większą całość.</li>
-            <li>Identyfikacja obiektu na podstawie posiadanej wiedzy.</li>
-        </ol>
-    </div>
-    <div class="info-memo memo-top">
-        <p><b>Procesy odgórne</b> (top-down) wykorzystują zgromadzoną wiedzę i doświadczenie do rozpoznawania bodźców.
-            Dzięki nim możliwa jest stałość spostrzegania (wielkości, kształtu, barwy).
-            W procesach odgórnych ważną rolę odgrywa nastawienie, które może przyczynić się do
-            powstawania błędów percepcyjnych oraz złudzeń optycznych.</p>
-    </div>
-        <h2 id="attention" class="functions-header">Uwaga</h2>
-    <div class="cognitive-functions attention">
-        <p>Podstawową funkcją uwagi jest <b>selekcja informacji</b>. Jest ona niezbędna do codziennego funkcjonowania.
-            Bez niej nasz mózg uległby przeciążeniu, gdyż nie byłby w stanie przetwarzać wszystkich docierających do niego bodźców.</p>
-    </div>
+    <h2 id="attention" class="functions-header">Uwaga</h2>
+    <div class="info-container attention-container">
         <div class="info-memo memo-attention">
-        <p>Wyróżniamy dwa podstawowe typy uwagi:</p>
-        <ol>
-            <li> <b>Uwaga mimowolna</b> – przebiega bez udziału świadomości. Jest wywoływana przez nagłą zmianę środowiska
-                (dźwięk, obraz), umożliwia szybkie wykrycie zagrożenia.</li>
-            <li><b>Uwaga wolicjonalna</b> – jest uruchamianya przez celowe skupienie się na danym obiekcie.</li>
-        </ol>
+            <p>Wyróżniamy dwa podstawowe typy uwagi:</p>
+            <ol>
+                <li> <b>Uwaga mimowolna</b> – przebiega bez udziału świadomości. Jest wywoływana przez nagłą zmianę środowiska
+                    (dźwięk, obraz), umożliwia szybkie wykrycie zagrożenia.</li>
+                <li><b>Uwaga wolicjonalna</b> – jest uruchamianya przez celowe skupienie się na danym obiekcie.</li>
+            </ol>
+        </div>
+        <div class="cognitive-functions attention">
+            <p>Podstawową funkcją uwagi jest <b>selekcja informacji</b>. Jest ona niezbędna do codziennego funkcjonowania.
+                Bez niej nasz mózg uległby przeciążeniu, gdyż nie byłby w stanie przetwarzać wszystkich docierających do niego bodźców.</p>
+        </div>
     </div>
-    <div class="info-memo memo-attention-functions">
-        <p>Najważniejsze funkcje uwagi:</p>
-        <ul>
-            <li>Selektywność – wybieranie bodźców do dalszego przetwarzania</li>
-            <li>Czujność – gotowość do wykrycia zmiany</li>
-            <li>Przeszukiwanie pola percepcyjnego – zdolność odnajdywania określonych bodźców</li>
-        </ul>
-    </div>
-    <div class="info-memo memo-attention-functions2">
-        <p>Najważniejsze funkcje uwagi:</p>
-        <ul>
-            <li>Przedłużona koncentracja – zdolność do utrzymywania uwagi przez dłuższy czas na tym samym obiekcie</li>
-            <li>Podzielność uwagi – zdolność koncentracji uwagi na 2 lub więcej źródłach informacji</li>
-        </ul>
-    </div>
-
+        <div class="memo-attention-functions">
+            <div class="info-memo memo-attention-functions1">
+                <p>Najważniejsze funkcje uwagi:</p>
+                <ul>
+                    <li>Selektywność – wybieranie bodźców do dalszego przetwarzania</li>
+                    <li>Czujność – gotowość do wykrycia zmiany</li>
+                    <li>Przeszukiwanie pola percepcyjnego – zdolność odnajdywania określonych bodźców</li>
+                </ul>
+            </div>
+        <div class="info-memo memo-attention-functions2">
+            <p>Najważniejsze funkcje uwagi:</p>
+            <ul>
+                <li>Przedłużona koncentracja – zdolność do utrzymywania uwagi przez dłuższy czas na tym samym obiekcie</li>
+                <li>Podzielność uwagi – zdolność koncentracji uwagi na 2 lub więcej źródłach informacji</li>
+            </ul>
+        </div>
+        </div>
 {% endblock %}
