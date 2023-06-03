@@ -23,6 +23,7 @@ import re
 import config
 
 app = Flask(__name__)
+
 app.secret_key = "74a7aaa8-81ef-4fcd-b5ad-a1d2134a7cca"
 
 db_username = config.db_username

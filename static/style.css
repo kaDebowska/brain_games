@@ -185,6 +185,17 @@ a{
     margin-bottom: 20px;
 }
 
+
+.info-header{
+    margin-bottom: -20px;
+    margin-top: 80px;
+    font-size: 35px;
+}
+
+#functions-header{
+    margin-top: 50px;
+}
+
 .info-container{
     display: flex;
     flex-wrap: wrap;
@@ -219,7 +230,7 @@ a{
 
 .memo-functions{
     background-image: url("images/memo-yellow.png");
-    margin-top: -40px;
+    margin-top: -20px;
     margin-left: 5%;
 }
 
@@ -256,10 +267,6 @@ a{
 }
 
 
-.functions-header{
-    margin-bottom: -20px;
-}
-
 .attention-container{
     flex-wrap: wrap-reverse;
 }
@@ -292,6 +299,48 @@ a{
     flex-direction: column;
 }
 
+.memo-memory{
+    background-image: url("images/memo-orange.png");
+    /*width: 350px;*/
+    /*height: 350px;*/
+    /*padding-left: 30px;*/
+    /*padding-right: 30px;*/
+    /*margin-top: 40px;*/
+}
+
+.memo-ltm-types{
+    width: 430px;
+    height: 430px;
+}
+
+.memory{
+    width: 80%;
+}
+
+.types{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.ltm-types{
+    flex-direction: column;
+}
+
+.reasoning{
+    width: 80%;
+}
+
+.memo-reasoning{
+    background-image: url("images/memo-blue.png");
+}
+
+.reasoning-types{
+    margin-top: 30px;
+
+}
+
 @media (max-width: 1300px){
     .cognitive-functions{
         display: flex;
@@ -302,7 +351,7 @@ a{
     .info-memo{
         display: flex;
         flex-direction: column;
-        margin: auto;
+        margin: 20px auto 0 auto;
     }
 
     .top-down{
@@ -317,6 +366,10 @@ a{
         display: flex;
         flex-wrap: wrap;
         margin: auto;
+    }
+
+    .memo-memory{
+        margin-top: 20px;
     }
 
 }

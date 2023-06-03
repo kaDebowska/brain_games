@@ -4,7 +4,7 @@
         <h1>Zdolności poznawcze</h1>
         <img src="{{ url_for('static', filename='/images/brain-info.png') }}" alt="mózg_logo" width="200px" height="170px">
     </div>
-    <h2>Czym są zdolności poznawcze?</h2>
+    <h2 id="functions-header" class="info-header">Czym są zdolności poznawcze?</h2>
     <div class="info-container functions-container">
         <div class="info-memo memo-functions">
             <p>Do zdolności poznawczych należą m.in.:</p>
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <h2 class="functions-header">Percepcja</h2>
+    <h2 id="perception" class="info-header">Percepcja</h2>
     <div class="info-container perception-container">
         <div class="cognitive-functions perception">
             <p>Percepcja jest najbardziej elementarnym procesem poznawczym. Jej główne zadanie polega na
@@ -32,7 +32,7 @@
                 Dzięki percepcji możliwe jest wyodrębnianie podstawowych cech obiektów, takich jak:
                 <b>kolor, kształt, wielkość, temperatura</b>.</p>
         </div>
-            <div class="info-memo memo-perception">
+        <div class="info-memo memo-perception">
             <p>Klasycznie wyróżnia się 5 typów percepcji:</p>
             <ul>
                 <li>wzrokową,</li>
@@ -43,7 +43,7 @@
             </ul>
         </div>
 
-            <div class="cognitive-functions perception top-down">
+        <div class="cognitive-functions perception top-down">
             <h3>Procesy oddolne i odgórne</h3>
             <p>Choć może się wydawać, że percepcja przebiega w sposób natychmiastowy i automatyczny,
                 wymaga integracji dwóch rodzajów procesów: oddolnych i odgórnych.</p>
@@ -64,7 +64,7 @@
                 powstawania błędów percepcyjnych oraz złudzeń optycznych.</p>
         </div>
     </div>
-    <h2 id="attention" class="functions-header">Uwaga</h2>
+    <h2 id="attention" class="info-header">Uwaga</h2>
     <div class="info-container attention-container">
         <div class="info-memo memo-attention">
             <p>Wyróżniamy dwa podstawowe typy uwagi:</p>
@@ -79,15 +79,15 @@
                 Bez niej nasz mózg uległby przeciążeniu, gdyż nie byłby w stanie przetwarzać wszystkich docierających do niego bodźców.</p>
         </div>
     </div>
-        <div class="memo-attention-functions">
-            <div class="info-memo memo-attention-functions1">
-                <p>Najważniejsze funkcje uwagi:</p>
-                <ul>
-                    <li>Selektywność – wybieranie bodźców do dalszego przetwarzania</li>
-                    <li>Czujność – gotowość do wykrycia zmiany</li>
-                    <li>Przeszukiwanie pola percepcyjnego – zdolność odnajdywania określonych bodźców</li>
-                </ul>
-            </div>
+    <div class="memo-attention-functions">
+        <div class="info-memo memo-attention-functions1">
+            <p>Najważniejsze funkcje uwagi:</p>
+            <ul>
+                <li>Selektywność – wybieranie bodźców do dalszego przetwarzania</li>
+                <li>Czujność – gotowość do wykrycia zmiany</li>
+                <li>Przeszukiwanie pola percepcyjnego – zdolność odnajdywania określonych bodźców</li>
+            </ul>
+        </div>
         <div class="info-memo memo-attention-functions2">
             <p>Najważniejsze funkcje uwagi:</p>
             <ul>
@@ -95,5 +95,79 @@
                 <li>Podzielność uwagi – zdolność koncentracji uwagi na 2 lub więcej źródłach informacji</li>
             </ul>
         </div>
+    </div>
+    <h2 id="memory" class="info-header">Pamięć</h2>
+    <div class="info-container memory-container">
+        <div class="cognitive-functions memory">
+            <p>Pamięć jest zdolnością do <b>kodowania, przechowywania</b> i <b>wydobywania</b> informacji.
+                Wyróżniamy różne rodzaje pamięci, zarówno ze względu na czas przechowywania informacji,
+                jak i rodzaj przechowywanych informacji. Biorąc pod uwagę kryterium czasowe,  wyróżnia się pamięć
+                sensoryczną, krótkotrwałą oraz długotrwałą.</p>
         </div>
+        <div class="types memory-types">
+            <div class="info-memo memo-memory">
+                <p> <b>Pamięć sensoryczna</b> (ultrakrótkotrwała) – przechowuje informacje zmysłowe przez bardzo krótki czas
+                    (poniżej 1 s). W ramach pamięci sensorycznej wyróżniamy <b>pamięć ikoniczną</b> (związaną z percepcją wzrokową)
+                    oraz <b>pamięć echoiczną</b> (związaną z percepcją słuchową). </p>
+            </div>
+            <div class="info-memo memo-memory">
+                <p> <b>Pamięć krótkotrwała </b> - przechowuje informacje przez okres kilkunastu sekund,
+                    jej pojemność jest ograniczona (ok. 7 elementów). W ramach pamięci krótkotrwałej funkcjonuje
+                    także <b>pamięć operacyjna</b>, która służy zapamiętywaniu informacji na krótki czas i wykonywaniu na nich operacji.</p>
+            </div>
+            <div class="info-memo memo-memory">
+                <p> <b>Pamięć długotrwała </b> - stanowi magazyn informacji zapamiętanych na stałe,
+                    a jej pojemność jest nieograniczona. W pamięci długotrwałej przechowywane są zarówno wspomnienia,
+                    jak i wiedza oraz umiejętności.</p>
+            </div>
+        </div>
+        <div class="info-container ltm-types-container">
+            <div class="cognitive-functions ltm-types">
+                <h3>Typy pamięci długotrwałej</h3>
+                <p>Biorąc pod uwagę rodzaj przechowywanych informacji oraz sposób ich przywoływania z pamięci długotrwałej,
+                    wyróżniamy pamięć deklaratywną (jawną) i niedeklaratywną (utajoną).</p>
+            </div>
+            <div class="types memory-types">
+                <div class="info-memo memo-memory memo-ltm-types">
+                    <p> <b>Pamięć deklaratywna</b> służy przechowywaniu informacji związanych z posiadaną wiedzą
+                        oraz wspomnieniami. Dzieli się na:</p>
+                    <ul>
+                        <li><b>pamięć epizodyczną</b>, przechowującą informacje o zdarzeniach, w których braliśmy udział,</li>
+                        <li><b>pamięć semantyczną</b>, przechowującą informacje na temat faktów i znaczeń.</li>
+                    </ul>
+                </div>
+
+                <div class="info-memo memo-memory memo-ltm-types">
+                    <p> <b>Pamięć niedeklaratywna</b> przechowuje informacje, z których posiadania często nie zdajemy sobie
+                        sprawy. Ujawnia się w odpowiednim kontekście, np. poprzez zachowanie. Dzieli się na:</p>
+                    <ul>
+                        <li><b>pamięć proceduralną</b>, związaną z uczeniem się umiejętności i nawyków,</li>
+                        <li><b>prymowanie</b> – skłonność do szybszego przetwarzania bodźców, z którymi miało się do czynienia wcześniej. </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2 id="reasoning" class="info-header">Rozumowanie</h2>
+    <div class="info-container reasoning-container">
+        <div class="cognitive-functions reasoning">
+            <p>Rozumowanie jest specyficznym rodzajem myślenia. Polega na <b>wyciąganiu wniosków</b>  na podstawie przesłanek.
+                Często bywa nazywane myśleniem logicznym. Wykorzystuje się je wszędzie tam, gdzie analizując dostępne dane,
+                dochodzimy do poprawnej lub prawdopodobnej konkluzji. Wyróżniamy dwa typy rozumowania: dedukcyjnie i indukcyjne.</p>
+        </div>
+        <div class="types reasoning-types">
+            <div class="info-memo memo-reasoning">
+                <p> <b>Rozumowanie dedukcyjne </b> (od ogółu do szczegółu) jest formą myślenia opartą na zasadach logiki.
+                    Na podstawie ogólnych twierdzeń dochodzi się do logicznie pewnego wniosku.
+                    Dedukcja często przyjmuje formę rozumowania warunkowego w postaci: <q> jeżeli…, to…</q>. </p>
+            </div>
+            <div class="info-memo memo-reasoning">
+                <p> <b>Rozumowanie indukcyjne</b> (od szczegółu do ogółu) polega na obserwowaniu zjawisk,
+                    analizowaniu faktów i wyprowadzaniu na ich podstawie ogólnych twierdzeń.
+                    Wnioski płynące z rozumowania dedukcyjnego nigdy nie są logicznie pewne,
+                    mogą być jedynie prawdopodobne. </p>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
