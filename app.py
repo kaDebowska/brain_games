@@ -43,6 +43,12 @@ def home():
 def info():
     return render_template('info.html')
 
+
+@app.route('/about_page')
+def about_page():
+    return render_template('about_page.html')
+
+
 @app.route('/registration', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':

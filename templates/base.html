@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
     {% block stylesheets %}
     {% endblock %}
-    <title>{% block title %}{% endblock %} - My Webpage</title>
+    <title>{% block title %}{% endblock %} - GymBrains</title>
     {% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary nav">
       <div class="container-fluid">
         <a class="navbar-brand" href="{{ url_for('home') }}">
             <img src="{{ url_for('static', filename='/images/logo.webp') }}" alt="mózg_logo" width="40" height="40">
@@ -43,13 +43,13 @@
                 Trenuj swój umysł
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ url_for("colors_start") }}">Uwaga</a></li>
-                <li><a class="dropdown-item" href="{{ url_for("chimp_test_start") }}">Pamięć</a></li>
-                <li><a class="dropdown-item" href="{{ url_for("formula_start") }}">Rozumowanie</a></li>
+                <li><a class="dropdown-item" href="{{ url_for("colors_start") }}">Trening uwagi</a></li>
+                <li><a class="dropdown-item" href="{{ url_for("chimp_test_start") }}">Trening pamięci</a></li>
+                <li><a class="dropdown-item" href="{{ url_for("formula_start") }}">Trening rozumowania</a></li>
               </ul>
             </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">O serwisie</a>
+                <a class="nav-link" href="{{ url_for("about_page") }}">O serwisie</a>
             </li>
         </ul>
               {% if user_id %}

@@ -2,6 +2,8 @@
 /*    background-color: black;*/
 /*}*/
 
+
+
 h1, h2{
     text-align: center;
     margin-top: 20px;
@@ -116,20 +118,23 @@ a{
     margin-right: 5%;
 }
 
-@media (max-width: 800px){
-    .image{
-        width: 90%;
-    }
-}
 
 .home_img {
-    margin-top: 100px;
-    position: relative;
+    margin-top: 50px;
+    /*position: relative;*/
+
 }
 
 .image {
     display: block;
     margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+    .image {
+        width: 100%;
+        margin-top: 20vh;
+    }
 }
 
 .test {
@@ -142,6 +147,12 @@ a{
 
 .registration_btn{
     margin-top: 30px;
+}
+
+.account-question{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .instruction{
@@ -228,8 +239,21 @@ a{
     font-size: 18px;
 }
 
-.memo-functions{
+.about-page{
     background-image: url("images/memo-yellow.png");
+    margin: auto;
+    width: 450px;
+    height: 450px;
+    font-size: 20px;
+    padding-top: 80px;
+}
+
+#author{
+    margin:auto;
+}
+
+.memo-functions{
+    background-image: url("images/memo-pink.png");
     margin-top: -20px;
     margin-left: 5%;
 }
@@ -245,7 +269,7 @@ a{
 }
 
 .memo-perception{
-    background-image: url("images/memo-pink.png");
+    background-image: url("images/memo-yellow.png");
     margin-left: 10%;
 }
 
@@ -257,12 +281,12 @@ a{
 }
 
 .memo-bottom{
-    background-image: url("images/memo-pink.png");
+    background-image: url("images/memo-yellow.png");
     margin-left: -40%;
 }
 
 .memo-top{
-    background-image: url("images/memo-pink.png");
+    background-image: url("images/memo-yellow.png");
     margin-left: 5%;
 }
 
@@ -300,7 +324,7 @@ a{
 }
 
 .memo-memory{
-    background-image: url("images/memo-orange.png");
+    background-image: url("images/memo-blue.png");
     /*width: 350px;*/
     /*height: 350px;*/
     /*padding-left: 30px;*/
@@ -333,7 +357,7 @@ a{
 }
 
 .memo-reasoning{
-    background-image: url("images/memo-blue.png");
+    background-image: url("images/memo-orange.png");
 }
 
 .reasoning-types{
