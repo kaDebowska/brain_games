@@ -57,15 +57,23 @@ def register():
         password = request.form['password']
         repeat_password = request.form['repeat_password']
         hashed_password = generate_password_hash(password)
-        pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+
+        if not username or not email or not password or not repeat_password:
+            flash('Wypełnij wszystkie pola.')
+            return render_template('registration.html')
 
         existing_user = Users.query.filter_by(username=username).first()
         if existing_user:
             flash("Użytkownik o tej nazwie już istnieje. Wybierz inną nazwę użytkownika.")
             return render_template('registration.html')
 
+        pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
         if not re.match(pattern, email):
             flash("Podaj poprawny adres email.")
+            return render_template('registration.html')
+
+        if len(password) < 8:
+            flash("Hało powinno mieć minimum 8 znaków.")
             return render_template('registration.html')
 
         if repeat_password != password:
@@ -103,13 +111,6 @@ def inject_variables():
     return dict(user_id=user_id)
 
 
-@app.route('/logout')
-def logout():
-    session.pop('user_id', None)
-    flash('Zostałeś poprawnie wylogowany.')
-    return redirect(url_for('login'), code=302)
-
-
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -118,6 +119,17 @@ def login_required(f):
             return redirect(url_for('login'))
         return f(*args, **kwargs)
     return decorated_function
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    session.pop('user_id', None)
+    flash('Zostałeś poprawnie wylogowany.')
+    return redirect(url_for('login'), code=302)
+
+
+
 
 
 
