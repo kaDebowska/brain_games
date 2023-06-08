@@ -1,28 +1,34 @@
 {% extends "base.html" %}
+{% block stylesheets %}
+    <link href="https://fonts.cdnfonts.com/css/led-digital-7" rel="stylesheet">
+{% endblock %}
 {% block title %}Color craze{% endblock %}
 {% block body %}
     <h1>Color Craze</h1>
-    <div class="d-flex flex-row-reverse points">
-        <div class="p-2">Wynik: {{ colors.player.colors_points }}</div>
+    <div class="points">
+        <p>Wynik:</p>
+        <div class="score">{{ colors.player.colors_points }}</div>
     </div>
     <div class="timer">
-        <p>czas:&nbsp</p>
         <span id="timer"></span>
     </div>
-    <div class="card text-bg-light mb-3 colors_task" style="max-width: 18rem;">
-      <div class="card-header">{{ colors.task_type }}</div>
-      <div class="card-body">
-      <h5 class="card-title colors_question" style="color: {{ colors.task[1] }}">{{ colors.task[0] }}</h5>
-      </div>
+    <div class="task">
+        <div class="card text-bg-light mb-3 colors_task" style="max-width: 18rem;">
+          <div class="card-header">{{ colors.task_type }}</div>
+          <div class="card-body">
+          <h5 class="card-title colors_question" style="color: {{ colors.task[1] }}">{{ colors.task[0] }}</h5>
+          </div>
+        </div>
+
+        <div class="answer_buttons">
+            {% for key in colors.answers %}
+                <div>
+                    <a class="btn btn-light colors_btn" href="{{ url_for("colors_answer", key=key) }}" role="button" style="color:{{ colors.answers[key] }}">{{ key }}</a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
-    <div class="answer_buttons">
-        {% for key in colors.answers %}
-            <div>
-                <a class="btn btn-light colors_btn" href="{{ url_for("colors_answer", key=key) }}" role="button" style="color:{{ colors.answers[key] }}">{{ key }}</a>
-            </div>
-        {% endfor %}
-    </div>
     <script>
         let timer = document.getElementById('timer');
         let time = timer.innerHTML || {{ time_left }};

@@ -1,24 +1,34 @@
 {% extends "base.html" %}
+{% block stylesheets %}
+    <link href="https://fonts.cdnfonts.com/css/led-digital-7" rel="stylesheet">
+{% endblock %}
 {% block title %}Formula{% endblock %}
 {% block body %}
     <h1>Formula</h1>
-    <div class="d-flex flex-row-reverse points">
-        <div class="p-2">Wynik: {{ formula.player.formula_points }}</div>
+    <div class="points">
+        <p>Wynik:</p>
+        <div class="score">{{ formula.player.formula_points }}</div>
     </div>
     <div class="timer">
-        <p>czas:&nbsp</p>
         <span id="timer"></span>
     </div>
-    <div class="container formula_question">
-        <p>{{ formula.player.formula_answers[0] }} {{ formula.operator }} {{ formula.player.formula_answers[1] }} = {{ formula.result }}</p>
+    <div class="task">
+        <div class="container formula_question">
+            <button type="button" class="btn btn-primary formula_btn question_btn">{{ formula.player.formula_answers[0] }}</button>
+            {{ formula.operator }}
+            <button type="button" class="btn btn-primary formula_btn question_btn">{{ formula.player.formula_answers[1] }}</button> =
+            <button type="button" class="btn btn-primary formula_btn question_btn">{{ formula.result }}</button>
+    {#        <p>{{ formula.player.formula_answers[0] }} {{ formula.operator }} {{ formula.player.formula_answers[1] }} = {{ formula.result }}</p>#}
+        </div>
+        <div class="answer_buttons">
+            {% for i in range(4) %}
+                <div>
+                    <a class="btn btn-primary formula_btn" href="{{ url_for("formula_answer", index=i) }}" role="button">{{ formula.all_answers[i] }}</a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <div class="answer_buttons">
-        {% for i in range(4) %}
-            <div>
-                <a class="btn btn-primary formula_btn" href="{{ url_for("formula_answer", index=i) }}" role="button">{{ formula.all_answers[i] }}</a>
-            </div>
-        {% endfor %}
-    </div>
+
     <script>
         let timer = document.getElementById('timer');
         let time = timer.innerHTML || {{ time_left }};
