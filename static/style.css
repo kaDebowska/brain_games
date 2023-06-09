@@ -143,21 +143,10 @@ a{
 
 
 .home_img {
-    margin-top: 50px;
-    /*position: relative;*/
-
-}
-
-.image {
-    display: block;
-    margin: 0 auto;
-}
-
-@media (max-width: 800px) {
-    .image {
-        width: 100%;
-        margin-top: 20vh;
-    }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
 }
 
 
@@ -193,8 +182,7 @@ a{
 }
 
 .btn-understood{
-    width: 10%;
-    padding: 10px;
+    padding: 10px 20px 10px 20px;
 }
 
 
@@ -403,6 +391,20 @@ a{
     font-size: 25px;
     font-family: 'LED Digital 7', sans-serif;
 
+}
+
+
+@media (max-width: 800px) {
+    .image {
+        width: 99%;
+    }
+    .instruction{
+        width: 95%;
+        font-size: 20px;
+    }
+    .nav{
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 1300px){
