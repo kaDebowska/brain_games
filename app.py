@@ -128,9 +128,19 @@ def logout():
     flash('Zostałeś poprawnie wylogowany.')
     return redirect(url_for('login'), code=302)
 
-
-
-
+@app.route('/account')
+@login_required
+def account():
+    user = Users.query.get(session.get('user_id'))
+    username = user.username
+    plot1_user = create_plot(session.get('user_id'), 1)
+    plot1_all = plot_for_all(1)
+    plot2_user = create_plot(session.get('user_id'), 2)
+    plot2_all = plot_for_all(2)
+    plot3_user = create_plot(session.get('user_id'), 3)
+    plot3_all = plot_for_all(3)
+    return render_template('account.html', username=username, plot1_user=plot1_user, plot2_user=plot2_user,
+                           plot3_user=plot3_user, plot1_all=plot1_all, plot2_all=plot2_all, plot3_all=plot3_all)
 
 
 # Color Craze ########################################################################################################
@@ -197,7 +207,7 @@ def colors_end():
         result = Results(colors.player.colors_points, end_time, user_id, game_id)
         db.session.add(result)
         db.session.commit()
-        plot = create_plot()
+        plot = create_plot(session.get('user_id'), session.get('game_id'))
         return render_template('colorCraze/end.html', colors=colors, plot=plot)
     else:
         return redirect(url_for('home'), code=302)
@@ -262,7 +272,7 @@ def chimp_test_end():
         result = Results(chimpTest.player.chimpTest_score, end_time, user_id, game_id)
         db.session.add(result)
         db.session.commit()
-        plot = create_plot()
+        plot = create_plot(session.get('user_id'), session.get('game_id'))
         return render_template('chimpTest/end.html', chimpTest=chimpTest, plot=plot)
     else:
         return redirect(url_for('home'), code=302)
@@ -342,16 +352,39 @@ def formula_end():
         result = Results(formula.player.formula_points, end_time, user_id, game_id)
         db.session.add(result)
         db.session.commit()
-        plot = create_plot()
+        plot = create_plot(session.get('user_id'), session.get('game_id'))
         return render_template('formula/end.html', formula=formula, plot=plot)
     else:
         return redirect(url_for('home'), code=302)
 
-def create_plot():
-    user_results = Results.query.filter_by(user_id=session.get('user_id'), game_id=session.get('game_id')).all()
+def create_plot(user_id, game_id):
+    user_results = Results.query.filter_by(user_id=user_id, game_id=game_id).all()
     time = [result.result_time for result in user_results]
     result = [result.result for result in user_results]
     fig = go.Figure(data=go.Scatter(x=time, y=result))
+    plot = fig.to_html(full_html=False)
+    return plot
+
+def plot_for_all(game_id):
+    all_results = Results.query.filter_by(game_id=game_id).all()
+    result_counts = {}
+
+    for result in all_results:
+        result_value = result.result
+        if result_value in result_counts:
+            result_counts[result_value] += 1
+        else:
+            result_counts[result_value] = 1
+
+    sorted_results = sorted(result_counts.items())
+    x_values = [result[0] for result in sorted_results]
+    y_values = [result[1] for result in sorted_results]
+
+    fig = go.Figure(data=go.Scatter(x=x_values, y=y_values))
+    fig.update_layout(
+        xaxis_title='Wynik',
+        yaxis_title='Ilość wystąpień',
+    )
     plot = fig.to_html(full_html=False)
     return plot
 

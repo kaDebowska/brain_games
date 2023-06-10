@@ -43,9 +43,9 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #a9dfe8;
+    background-color: #c4e1e7;
     border-radius: 50%;
-    border: #167be8 5px solid;
+    border: #375e8f 5px solid;
     width: 80px;
     height: 80px;
     font-size: 30px;
@@ -167,6 +167,7 @@ a{
 .instruction{
     width: 50%;
     margin: 100px auto auto;
+    font-size: 18px;
 }
 
 .card-header{
@@ -393,17 +394,41 @@ a{
 
 }
 
+.account_plot{
+    width: 45%;
+}
 
-@media (max-width: 800px) {
+.results{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.plots{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+@media (max-width: 1000px) {
     .image {
         width: 99%;
     }
     .instruction{
         width: 95%;
-        font-size: 20px;
+        font-size: 30px;
     }
     .nav{
-        font-size: 20px;
+        font-size: 30px;
+    }
+    .dropdown-item{
+        font-size: 30px;
+    }
+    .btn_start{
+        font-size: 30px;
+    }
+    .account_plot{
+        width: 90%;
     }
 }
 

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} Konto {% endblock %}
+{% block body %}
+    <h1>Konto użytkownika {{ username }}</h1>
+    <h2>Color craze</h2>
+    <div class="results">
+        <h3>Twoje wyniki</h3>
+        <h3>Wyniki innych graczy</h3>
+    </div>
+    <div class="plots">
+        <div class="account_plot">
+            {{ plot1_user|safe }}
+        </div>
+        <div class="account_plot">
+            {{ plot1_all|safe }}
+        </div>
+    </div>
+
+    <h2>Chimp test</h2>
+    <div class="results">
+        <h3>Twoje wyniki</h3>
+        <h3>Wyniki innych graczy</h3>
+    </div>
+    <div class="plots">
+        <div class="account_plot">
+            {{ plot2_user|safe }}
+        </div>
+        <div class="account_plot">
+            {{ plot2_all|safe }}
+        </div>
+    </div>
+
+    <h2>Formula</h2>
+    <div class="results">
+        <h3>Twoje wyniki</h3>
+        <h3>Wyniki innych graczy</h3>
+    </div>
+    <div class="plots">
+        <div class="account_plot">
+            {{ plot3_user|safe }}
+        </div>
+        <div class="account_plot">
+            {{ plot3_all|safe }}
+        </div>
+    </div>
+
+
+{% endblock %}
