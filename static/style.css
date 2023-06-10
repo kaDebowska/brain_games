@@ -85,6 +85,7 @@ a{
 .colors_btn{
     height: 70px;
     font-size: 20px;
+    font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -391,24 +392,22 @@ a{
 #timer{
     font-size: 25px;
     font-family: 'LED Digital 7', sans-serif;
-
 }
 
-.account_plot{
-    width: 45%;
+.statistics{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .results{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
 }
 
-.plots{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
 
 @media (max-width: 1000px) {
     .image {
@@ -427,7 +426,7 @@ a{
     .btn_start{
         font-size: 30px;
     }
-    .account_plot{
+    .results{
         width: 90%;
     }
 }
