@@ -3,14 +3,20 @@
 {% block body %}
     <div class="container form_div">
         <form method="POST">
-        <div class="mb-3">
         <label for="username" class="form-label">Nazwa użytkownika</label>
-        <input name="username" type="text" class="form-control" id="username">
-      </div>
-      <div class="mb-3">
-        <label for="inputPassword3" class="form-label">Hasło</label>
-        <input name="password" type="password" class="form-control" id="inputPassword3">
-      </div>
+        <div class="mb-3 input-group" >
+            <span class="input-group-text" id="basic-addon1">
+                <i class="bi bi-person-fill"></i>
+            </span>
+            <input name="username" type="text" class="form-control" id="username" required>
+        </div>
+        <label for="inputPassword" class="form-label">Hasło</label>
+        <div class="mb-3 input-group" >
+            <span class="input-group-text" id="basic-addon1">
+                <i class="bi bi-key-fill"></i>
+            </span>
+            <input name="password" type="password" class="form-control" id="inputPassword" required>
+        </div>
        <div class="container registration_btn">
            <button type="submit" class="btn btn-primary">Zaloguj się</button>
        </div>

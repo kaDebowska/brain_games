@@ -62,6 +62,14 @@ def register():
             flash('Wypełnij wszystkie pola.')
             return render_template('registration.html')
 
+        if len(username) < 4:
+            flash('Nazwa użytkownika jest za krótka.')
+            return render_template('registration.html')
+
+        if len(username) > 25:
+            flash('Nazwa użytkownika jest za długa.')
+            return render_template('registration.html')
+
         existing_user = Users.query.filter_by(username=username).first()
         if existing_user:
             flash("Użytkownik o tej nazwie już istnieje. Wybierz inną nazwę użytkownika.")

@@ -8,22 +8,39 @@
     {% endif %}
     <div class="container form_div">
         <form method="POST">
-        <div class="mb-3">
+
         <label for="username" class="form-label">Nazwa użytkownika</label>
-        <input name="username" type="text" class="form-control" id="username">
-      </div>
-      <div class="mb-3">
+        <div class="mb-3 input-group" >
+            <span class="input-group-text" id="basic-addon1">
+                <i class="bi bi-person-fill"></i>
+            </span>
+            <input name="username" type="text" class="form-control" id="username" required minlength="4">
+        </div>
+
         <label for="inputEmail" class="form-label">Email</label>
-        <input name="email" type="email" class="form-control" id="inputEmail">
-      </div>
-      <div class="mb-3">
+        <div class="mb-3 input-group">
+            <span class="input-group-text" id="basic-addon1">
+                <i class="bi bi-envelope-at-fill"></i>
+            </span>
+            <input name="email" type="email" class="form-control" id="inputEmail" required>
+        </div>
+
         <label for="inputPassword" class="form-label">Hasło</label>
-        <input name="password" type="password" class="form-control" id="inputPassword">
-      </div>
-        <div class="mb-3">
+        <div class="mb-3 input-group" >
+            <span class="input-group-text" id="basic-addon1">
+                <i class="bi bi-key-fill"></i>
+            </span>
+            <input name="password" type="password" class="form-control" id="inputPassword" required minlength="8">
+        </div>
+
         <label for="inputRepeatPassword" class="form-label">Powtórz hasło</label>
-        <input name="repeat_password" type="password" class="form-control" id="inputRepeatPassword">
-      </div>
+        <div class="mb-3 input-group" >
+            <span class="input-group-text" id="basic-addon1">
+                <i class="bi bi-key-fill"></i>
+            </span>
+            <input name="repeat_password" type="password" class="form-control" id="inputRepeatPassword" required minlength="8">
+        </div>
+
        <div class="container registration_btn">
            <button type="submit" class="btn btn-primary">Zarejestruj się</button>
        </div>
