@@ -151,7 +151,7 @@ colors = ColorCraze()
 @app.route('/colors/start')
 @login_required
 def colors_start():
-    session['time_left'] = 30
+    session['time_left'] = 1000
     session['game_id'] = 1
     colors.player.colors_points = 0
     return render_template('colorCraze/start.html')
@@ -288,7 +288,7 @@ formula = Formula()
 @app.route('/formula/start')
 @login_required
 def formula_start():
-    session['time_left'] = 1000
+    session['time_left'] = 30
     session['game_id'] = 3
     formula.player.formula_points = 0
     return render_template('formula/start.html')

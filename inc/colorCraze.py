@@ -10,12 +10,11 @@ class ColorCraze:
             'niebieski': 'blue',
             'brązowy': 'brown',
             'różowy': 'deeppink',
-            'pomarańczowy': 'orange',
             'czarny': 'black',
             'fioletowy': 'purple'
         }
-        self.values = ['czerwony', 'zielony', 'niebieski', 'brązowy', 'różowy', 'pomarańczowy', 'czarny', 'fioletowy']
-        self.colors = ['red', 'green', 'blue', 'brown', 'deeppink', 'orange', 'black', 'purple']
+        self.values = ['czerwony', 'zielony', 'niebieski', 'brązowy', 'różowy', 'czarny', 'fioletowy']
+        self.colors = ['red', 'green', 'blue', 'brown', 'deeppink', 'black', 'purple']
         self.task_type = ''
         self.task = []
         self.correct_answer = []
@@ -42,7 +41,8 @@ class ColorCraze:
     def choose_correct_answer(self):
         if self.task_type == 'znaczenie':
             self.correct_answer.append(self.task[0])
-            colors = [color for color in self.colors if color != self.task[1]]
+            excludes_colors = [self.task[1], self.colors_dict[self.task[0]]]
+            colors = [color for color in self.colors if color not in excludes_colors]
             # print('colors', colors)
             index = random.randint(0, len(colors) - 1)
             self.correct_answer.append(colors[index])
@@ -59,13 +59,15 @@ class ColorCraze:
 
     def generate_answers(self):
         if self.task_type == 'znaczenie':
+            print('task', self.task)
             values = [value for value in self.values if value != self.correct_answer[0]]
             random.shuffle(values)
-            answers_colors = [self.correct_answer[1], self.colors_dict[self.correct_answer[0]]]
+            answers_colors = [self.task[1], self.colors_dict[self.correct_answer[0]], self.correct_answer[1]]
+            print('answers_colors', answers_colors)
             colors = [color for color in self.colors if color not in answers_colors]
-            for i in range(2):
-                index = random.randint(0, len(colors) - 1)
-                answers_colors.append(colors[index])
+            print('colors', colors)
+            index = random.randint(0, len(colors) - 1)
+            answers_colors.append(colors[index])
             answers_colors.remove(self.correct_answer[1])
             random.shuffle(answers_colors)
             for i in range(3):
