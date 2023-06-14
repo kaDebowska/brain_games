@@ -88,10 +88,11 @@ a{
 .colors_btn{
     height: 70px;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 520;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid #cbcccd;
 }
 
 .task{
@@ -99,9 +100,11 @@ a{
 }
 
 .colors_task{
-    margin: auto;
-    margin-top: 40px;
+    margin: 40px auto auto;
+}
 
+.colors_question{
+    font-weight: 520;
 }
 
 .colors_check{
@@ -419,6 +422,11 @@ i{
     width: 45%;
 }
 
+@media (max-width: 1420px){
+    .memo-functions{
+        margin-top: auto;
+    }
+}
 
 @media (max-width: 1000px) {
     .image {

@@ -5,16 +5,16 @@ from inc.user import User
 class ColorCraze:
     def __init__(self):
         self.colors_dict = {
-            'czerwony': 'red',
+            'czerwony': '#ea0505',
             'zielony': 'green',
             'niebieski': 'blue',
-            'brązowy': 'brown',
+            'brązowy': '#77340a',
             'różowy': 'deeppink',
             'czarny': 'black',
             'fioletowy': 'purple'
         }
         self.values = ['czerwony', 'zielony', 'niebieski', 'brązowy', 'różowy', 'czarny', 'fioletowy']
-        self.colors = ['red', 'green', 'blue', 'brown', 'deeppink', 'black', 'purple']
+        self.colors = ['#ea0505', 'green', 'blue', '#77340a', 'deeppink', 'black', 'purple']
         self.task_type = ''
         self.task = []
         self.correct_answer = []

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
-        <link rel="icon" href="static/images/logo.webp" type="image/webp">
+        <link rel="icon" href="{{ url_for('static', filename='images/logo.webp') }}" type="image/webp">
 
     {% block stylesheets %}
     {% endblock %}
@@ -34,10 +34,10 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ url_for('info') }}">Czym są</a></li>
-                <li><a class="dropdown-item" href="info#perception">Percepcja</a></li>
-                <li><a class="dropdown-item" href="info#attention">Uwaga</a></li>
-                <li><a class="dropdown-item" href="info#memory">Pamięć</a></li>
-                <li><a class="dropdown-item" href="info#reasoning">Rozumowanie</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('info') }}#perception">Percepcja</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('info') }}#attention">Uwaga</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('info') }}#memory">Pamięć</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('info') }}#reasoning">Rozumowanie</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -57,7 +57,7 @@
               {% if user_id %}
                 <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown ">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-fill profile"></i>
 {#                      <img src="{{ url_for('static', filename='/images/user.png') }} " alt="profil_ikona" width="25" height="25">#}
                   </a>
